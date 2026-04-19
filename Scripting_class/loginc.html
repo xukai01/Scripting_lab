@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <h2>Login Form</h2>
+    <!-- <br> -->
+    <div class="huh">
+        <form onsubmit="return validateLogin()">
+        <!-- <form action="c.html" onsubmit="return validateLogin()"> -->
+            <!-- <label for="roll">Roll No.:</label>
+            <input type="number" placeholder="Enter Your Roll No." id="roll" name="roll" required> -->
+            <label for="email">Student Email:</label>
+            <input type="text" placeholder="Enter your email.." id="email" name="email" required><br>
+            <!-- <label for="password">Password:</label>
+            <input type="password" name="password" id="password" placeholder="Enter password" required> -->
+            <!-- <div class="eye"> -->
+                <label>Password:</label>
+                <input type="password" id="password" placeholder="Enter password" required >
+                <span onclick="togglePassword()">Show</span>
+            <!-- </div> -->
+
+            <label for="captcha" id="shh">Captcha:</label>
+            <canvas id="captchaCanvas" width="200" height="50"></canvas>
+            <div class="refresh" onclick="generateCaptcha()">🔄 Refresh</div><br>
+            <input type="captcha" name="captcha" id="sho" placeholder="Enter same as image" required>
+            <a href="c.html"><center><button type="submit">LogIn</button></center></a>
+
+            <div><p>Don't have an account?  <a href="signup.html">Sign Up</a></p></div>
+        </form>
+    <script>
+            // var a=Math.floor(Math.random()*10);
+            // var b=Math.floor(Math.random()*10);
+            // // document.getElementById("sho").inputMode=`${a}+${b}`;
+            // document.getElementById("shh").innerHTML=`Captcha:(${a}+${b})`
+
+            let captchaText = "";
+
+            // function generateCaptcha() {
+            //     // const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            //     const chars="+/*-"
+            //     captchaText = "";
+            //     var a=Math.floor(Math.random()*10+1);
+            //     var b=Math.floor(Math.random()*10+1);
+            //     var c=Math.floor(Math.random()*10+1);
+            //     var d=Math.floor(Math.random()*10+1);
+
+            //     for (let i=0;i<3;i++) {
+            //         var b=toString(Math.floor(Math.random()*10+1)) + chars.charAt(Math.floor(Math.random() * chars.length));
+            //         captchaText += b;
+            //     }
+            //     // document.getElementById("captchaCanvas").textContent=captchaText;
+            //     // document.getElementById("huh").innerHTML=captchaText;
+            //     // canvas = captchaText;
+            //     drawCaptcha();
+            // }
+            function generateCaptcha() {
+                const operators = "+-*/";
+
+                let num1 = Math.floor(Math.random() * 10 + 1);
+                let num2 = Math.floor(Math.random() * 10 + 1);
+                let num3 = Math.floor(Math.random() * 10 + 1);
+                let num4 = Math.floor(Math.random() * 10 + 1);
+
+                let op1 = operators.charAt(Math.floor(Math.random() * operators.length));
+                let op2 = operators.charAt(Math.floor(Math.random() * operators.length));
+                let op3 = operators.charAt(Math.floor(Math.random() * operators.length));
+
+                captchaText = num1 + op1 + num2 + op2 + num3;
+
+                drawCaptcha();
+            }
+
+            function drawCaptcha() {
+                const canvas = document.getElementById("captchaCanvas");
+                const ctx = canvas.getContext("2d");
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.font = "30px Arial";
+                ctx.fillStyle = "#000";
+                ctx.fillText(captchaText, 40, 35);
+
+                for (let i = 0; i < 3; i++) {
+                    ctx.strokeStyle = "#" + Math.floor(Math.random()*16777215).toString(16);
+                    ctx.beginPath();
+                    ctx.moveTo(Math.random() * 200, Math.random() * 50);
+                    ctx.lineTo(Math.random() * 200, Math.random() * 50);
+                    // ctx.stroke();
+                }
+            }
+
+            function togglePassword(){
+                let pass = document.getElementById("password");
+                pass.type = pass.type === "password" ? "text" : "password";
+            }
+
+            function validateForm(){
+                const userInput = document.getElementById("captchaInput").value;
+                const error = document.getElementById("errorMsg");
+
+                if(userInput !== captchaText){
+                    error.innerHTML = "Incorrect CAPTCHA!";
+                    generateCaptcha();
+                    return false;
+                }
+
+                alert("Login Successful!");
+                return true;
+            }
+            generateCaptcha();
+
+            function getitem(){
+                let mail = document.getElementById()
+            }
+            function validateLogin(){
+
+                let emailInput = document.getElementById("email").value;
+                let passwordInput = document.getElementById("password").value;
+                let captchaInput = document.getElementById("sho").value;
+
+                let savedEmail = localStorage.getItem("email");
+                let savedPassword = localStorage.getItem("password");
+
+                if(captchaInput !== captchaText){
+                    alert("Incorrect CAPTCHA");
+                    generateCaptcha();
+                    return false;
+                }
+
+                if(emailInput === savedEmail && passwordInput === savedPassword){
+                    alert("Login Successful!");
+                    window.location.href="c.html";
+                    return false;
+                }
+                else{
+                    alert("Invalid Email or Password");
+                    return false;
+                }
+            }
+    </script>
+ </body>
+</html>

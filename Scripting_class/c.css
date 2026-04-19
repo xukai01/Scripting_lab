@@ -1,0 +1,45 @@
+h1{
+    font-size: 500%;
+}
+body{
+    /* background: burlywood; */
+    inset: unset;
+    image-rendering: crisp-edges;
+    /* visibility: hidden; */
+    /* descent-override: unset; */
+    align-self: start;
+    stroke-width: 20%;
+    overflow-x: scroll;
+}
+fieldset{
+    background-image: url(NIT.jpeg);
+    background-size: cover;
+    /* backdrop-filter: blur(8px); */
+}
+form{
+    margin: auto;
+    padding: 10px;
+    font: arial;
+    width: 200;
+}
+div{
+    padding: 10px;
+}
+#huh{
+    background-image: url(NIT.jpeg);
+    object-fit: cover;
+}
+/* fieldset{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+#ok{
+    background-image: none;
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    /* background-size: cover; */
+    /* filter: blur(8px); */
+    /* background-color: white; */
+    color: white;
+}
