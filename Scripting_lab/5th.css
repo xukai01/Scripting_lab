@@ -1,0 +1,76 @@
+/* nav{
+    align-items: baseline;
+} */
+body{
+    display: block;
+}
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+    position:fixed;
+    width:95%;
+    /* background-image: url(NIT_LOGO.png); */
+}
+nav ul{
+    /* align-content: flex-end; */
+    list-style: none;
+    display:flex
+    /* margin: 40px auto; */
+}
+nav ul li{
+    margin-left: 20px;
+    /* -ms-text-autospace: ideograph-alpha; */
+}
+nav ul li a{
+    text-decoration: none;
+    /* textcolor: black; */
+    color: black;
+    /* text-decoration: black; */
+    /* font-display: block; */
+}
+div{
+    /* display: block; */
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.ok{
+    background-color: white;
+    padding: 10px;
+    border: 5 solid black;
+    border-radius: 15px;
+    box-shadow: 0 10px 5px;
+    /* box-sizing: border-box; */
+    border-style: bold black;
+    /* display: inline-flex; */
+    font-weight: bold;
+    /* width: 300px;
+    height: 300px; */
+    display: block;
+    box-sizing: border-box;
+    width: 650px;
+    height: 400px;
+    margin: 40px auto;
+}
+label{
+    padding: 5px;
+    display: block;
+    /* margin-bottom: 5px; */
+}
+input{
+    width: 80%;
+}
+select{
+    width: 50%;
+}
+.p{
+    box-sizing: border-box;
+    /* font-size: xx-large; */
+    /* border: 5px ;
+    border-style:solid; */
+}

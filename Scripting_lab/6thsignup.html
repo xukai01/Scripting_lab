@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <h2>Create Account</h2>
+    <div class="huh">
+    
+
+    <form id="signupform" onsubmit="saveUser(event)">
+        <div class="input">
+            <label for="name">Student Name:</label>
+            <input type="text" placeholder="Enter Full Name" id="name" name="name" minlength="3" required>
+        </div>
+        <div class="input">
+            <label for="roll">Roll No.:</label>
+            <input type="number" placeholder="Enter Your Roll No." id="roll" name="roll" required>
+        </div>
+        <!-- <div class="input">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter username">
+            <div class="error" id="usernameError"></div>
+        </div> -->
+
+        <div class="input">
+            <label for="email">Email:</label>
+            <input type="text" id="email" placeholder="Enter your email" required>
+            <div class="error" id="emailError"></div>
+        </div>
+
+        <!-- <div class="input">
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Enter password" required>
+            <span onclick="togglePassword()">Show</span>
+            <div class="error" id="passwordError"></div>
+        </div> -->
+        <div class="input">
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Enter password" required onkeyup="checkStrength()">
+            <span onclick="togglePassword()">Show</span>
+            <div id="strength"></div>
+            <div class="error" id="passwordError"></div>
+        </div>
+
+        <div class="input">
+            <label for="confirm">Confirm Password:</label>
+            <input type="password" id="confirm" placeholder="Confirm password" required>
+            <div class="error" id="confirmError"></div>
+        </div>
+        <!-- <div class="input">
+            <label for="captcha" id="shh">Captcha:</label>
+            <fieldset style="width: 200px;"></fieldset> -->
+            <!-- <canvas width="200px" height="50px"></canvas><br><br>
+            <input type="text" name="captcha" id="captcha" placeholder="Enter captcha" required>
+            <div class="error" id="captchaerror"></div>
+        </div> -->
+
+        <center><button type="submit">Sign Up</button></center>
+    </form>
+
+    <div class="switch" style="padding: 5px;">
+        Already have an account? <a href="loginc.html">Login</a>
+    </div>
+</div>
+    <script>
+            var a=Math.floor(Math.random()*10);
+            var b=Math.floor(Math.random()*10);
+            document.getElementById("sho").inputMode=`${a}+${b}`;
+            
+    document.getElementById("signupform").addEventListener("submit",function(e){
+
+            e.preventDefault();
+
+            let password=document.getElementById("password").value.trim();
+            let confirmp=document.getElementById("confirm").value.trim();
+            // let captcha=document.getElementById("captcha");
+            let email=document.getElementById("email");
+
+            let passworderror=document.getElementById("passwordError");
+            let confirmerror=document.getElementById("confirmError");
+            // let captchaerror=document.getElementById("captchaerror");
+
+            passworderror.textContent="";
+            confirmerror.textContent="";
+            captchaerror.textContent="";
+
+            let valid = true;
+
+            if(password.length<8){
+                passworderror.textContent="Please enter password with minimum length 8";
+                valid = false;
+            }
+            if(password!=confirmp){
+                confirmerror.textContent="Please enter same password as above";
+                valid=false;
+            }
+            // if(captcha!=(a+b)){
+            if(parseInt(captcha.value) !== (a+b)){
+                captchaerror.textContent="Please enter correct captcha!";
+                valid=false;
+            }
+            if(valid){
+                saveUser(event);
+                // alert("Account created succesfully!");
+                document.getElementById("signupform").reset();
+            }
+            // localStorage.setItem(password);
+            // localStorage.setItem(email);
+            // localStorage.setItem("email", email.value);
+            // localStorage.setItem("password", password);
+        });
+
+    function saveUser(event){
+        event.preventDefault();
+
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+
+        alert("Signup successful!");
+        window.location.href="loginc.html";
+    }
+    function togglePassword(){
+        let pass = document.getElementById("password");
+
+        if(pass.type === "password"){
+            pass.type = "text";
+        }else{
+            pass.type = "password";
+        }
+    }
+
+    function checkStrength(){
+        let password = document.getElementById("password").value;
+        let strength = document.getElementById("strength");
+
+        let strong = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])/;
+
+        if(password.length < 6){
+            strength.innerHTML = "Weak Password";
+            strength.style.color = "red";
+        }
+        else if(password.match(strong)){
+            strength.innerHTML = "Strong Password";
+            strength.style.color = "green";
+        }
+        else{
+            strength.innerHTML = "Medium Password";
+            strength.style.color = "orange";
+        }
+    }
+    </script>
+</body>
+</html>

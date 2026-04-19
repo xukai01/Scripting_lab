@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login Form</title>
+
+<style>
+body{
+    font-family: Arial;
+    background: linear-gradient(#ecf1ec,#800202);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container{
+    display: flex;
+    background: white;
+    width: 750px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+/* Left side form */
+.form-section{
+    width: 50%;
+    padding: 30px;
+}
+
+/* Right side image */
+.image-section{
+    width: 50%;
+    background: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-section img{
+    width: 80%;
+}
+
+/* Form styling */
+label{
+    display: block;
+    margin-top: 10px;
+}
+
+input{
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+button{
+    width: 100%;
+    padding: 8px;
+    margin-top: 15px;
+    background-color: gray;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: gold;
+}
+
+/* .eye{
+    position: relative;
+}
+
+.eye span{
+    position: absolute;
+    right: 10px;
+    top: 38px;
+    cursor: pointer;
+} */
+
+canvas{
+    border: 1px solid #000;
+    margin-top: 10px;
+}
+
+.refresh{
+    cursor: pointer;
+    color: blue;
+    font-size: 14px;
+}
+
+.error{
+    color: red;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="main-container">
+
+    <!-- LEFT: FORM -->
+    <div class="form-section">
+        <h2>Login</h2>
+
+        <form onsubmit="return validateForm()">
+
+            <label>Roll No.:</label>
+            <input type="number" required>
+
+            <label>Email:</label>
+            <input type="email" required>
+
+            <!-- <div class="eye"> -->
+                <label>Password:</label>
+                <input type="password" id="password" required>
+                <span onclick="togglePassword()">Show</span>
+            <!-- </div> -->
+
+            <label>Enter CAPTCHA:</label>
+            <canvas id="captchaCanvas" width="200" height="50"></canvas>
+            <div class="refresh" onclick="generateCaptcha()">🔄 Refresh</div>
+
+            <input type="text" id="captchaInput" placeholder="Enter captcha text" required>
+
+            <p class="error" id="errorMsg"></p>
+
+            <button type="submit">Login</button>
+
+        </form>
+    </div>
+
+    <!-- RIGHT: CHARACTER IMAGE -->
+    <div class="image-section">
+        <!-- You can replace this image -->
+        <img src="NIT.jpeg" alt="Character">
+    </div>
+
+</div>
+
+<script>
+let captchaText = "";
+
+function generateCaptcha() {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    captchaText = "";
+
+    for (let i = 0; i < 6; i++) {
+        captchaText += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+
+    drawCaptcha();
+}
+
+function drawCaptcha() {
+    const canvas = document.getElementById("captchaCanvas");
+    const ctx = canvas.getContext("2d");
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.font = "30px Arial";
+    ctx.fillStyle = "#000";
+    ctx.fillText(captchaText, 40, 35);
+
+    for (let i = 0; i < 5; i++) {
+        ctx.strokeStyle = "#" + Math.floor(Math.random()*16777215).toString(16);
+        ctx.beginPath();
+        ctx.moveTo(Math.random() * 200, Math.random() * 50);
+        ctx.lineTo(Math.random() * 200, Math.random() * 50);
+        ctx.stroke();
+    }
+}
+
+function togglePassword(){
+    let pass = document.getElementById("password");
+    pass.type = pass.type === "password" ? "text" : "password";
+}
+
+function validateForm(){
+    const userInput = document.getElementById("captchaInput").value;
+    const error = document.getElementById("errorMsg");
+
+    if(userInput !== captchaText){
+        error.innerHTML = "Incorrect CAPTCHA!";
+        generateCaptcha();
+        return false;
+    }
+
+    alert("Login Successful!");
+    return true;
+}
+
+generateCaptcha();
+</script>
+
+</body>
+</html>

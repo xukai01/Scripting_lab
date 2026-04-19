@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            /* font: unset;
+            font: optional;
+            font-size: large;
+            print-color-adjust: economy;
+            scrollbar-width: thin; */
+            /* align-self: unset; */
+            /* width: fit-content; */
+            font-family: Arial, sans-serif;
+            background: linear-gradient(100deg,rgb(165, 146, 108),#744949);
+            display: flex;
+            justify-content: center;
+            /* margin-top: 50px; */
+            align-items: center;
+            height: 100vh;
+        }
+        .container{
+            /* pointer-events: all; */
+            /* border: black; */
+            /* border-style:solid; */
+            /* align-items: center; */
+            /* text-align: center; */
+            background-color: white;
+            padding: 10px;
+            width:350px;
+            border-radius: 5px;
+            /* height: 15%; */
+            box-shadow: 0 10px 15px;
+        }
+        h2{
+            text-align: center;
+        }
+        .input-div{
+            display: flex;
+            margin-bottom: 15px;
+        }
+        input{
+            flex:1;
+            padding: 8px;
+        }
+        button{
+            /* padding: 8px 12px; */
+            /* border: none; */
+            offset-block-end: auto;
+        }
+        button:hover{
+            background-color: black;
+            color: whitesmoke;
+        }
+        ul{
+            list-style:none;
+            symbols: -webkit-linear-gradient(216);
+        }
+        li{
+            padding: 5px;
+            margin-bottom: 5px;
+            /* list-style: circle; */
+            background-color: skyblue;
+            /* display: flex; */
+            /* flex: 1; */
+            width: 100%;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .completed{
+            text-decoration:line-through;
+            /* color: aliceblue; */
+            background-color:greenyellow;
+        }
+        .del-btn{
+            float: right;
+            /* margin: left 100px; */
+            color: white;
+            background: red;
+            /* padding: 3px 7px; */
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h2>My To-Do List</h2>
+
+    <div class="input-div">
+        <input type="text" id="inputtask" placeholder="Enter a task">
+        <button onclick="addtask()">Add</button>
+    </div>
+
+    <ul id="list"></ul>
+</div>
+<script>
+    function addtask(){
+        let inp = document.getElementById("inputtask");
+        let task =  inp.value;
+
+        if(task === ""){
+            alert("Add a task");
+            return;
+        }
+
+        let li = document.createElement("li");
+        // li.textContent = task;
+
+        let checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+
+        let span = document.createElement("span");
+        span.textContent = task;
+        // <input type="checkbox" name="" id="check">
+
+        // li.onclick=function(){
+        //     li.classList.toggle("completed");
+        // };
+
+        checkbox.onchange = function(){
+            if(checkbox.checked){
+                li.classList.toggle("completed");
+            }
+            else{
+                li.classList.remove("completed");
+            }
+        }
+
+        let delbtn = document.createElement("button");
+        delbtn.textContent = "delete";
+        delbtn.className = "del-btn"
+        delbtn.onclick = function(event){
+            event.stopPropagation();
+            li.remove();
+        };
+        li.appendChild(checkbox);
+        li.appendChild(span);
+        li.appendChild(delbtn);
+        document.getElementById("list").appendChild(li);
+
+        inp.value = "";
+    }
+</script>
+</body>
+</html>

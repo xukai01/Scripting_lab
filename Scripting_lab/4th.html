@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <style>
+        body{
+            font:arial ;
+            background-color: #c2c2c2;
+            /* display: flex;
+            justify-content: center;
+            /* text-align: center; */
+            /* align-items: center; */
+            /* height: 100vh; */ 
+            /* display: block; */
+            /* width: 500px; */
+        }
+        .huh{
+            background-color: white;
+            padding: 10px;
+            border: 5 solid black;
+            border-radius: 15px;
+            box-shadow: 0 10px 5px;
+            /* box-sizing: border-box; */
+            border-style: bold black;
+            /* display: inline-flex; */
+            font-weight: bold;
+            /* width: 300px;
+            height: 300px; */
+            display: block;
+            box-sizing: border-box;
+            width: 650px;
+            /* height: 400px; */
+            margin: 40px auto;
+        }
+        label{
+            padding: 5px;
+            display: block;
+            /* margin-bottom: 5px; */
+        }
+        input{
+            width: 80%;
+        }
+        .radio{
+            display: flex;
+            align-items: center;
+            /* gap: 8px; */
+        }
+        select{
+            width: 50%;
+        }
+        button{
+            width: 80%;
+            background-color: gray;
+        }
+        button:hover{
+            background-color: gold;
+        }
+        h2{
+            font-weight: bold;
+            text-align: center;
+            font-size: 35px;
+        }
+        textarea{
+            width: 80%;
+        }
+        h1{
+            background-image:url(NIT.jpeg);
+            font-size: 50px;
+            /* height: 100px; */
+        }
+    </style>
+</head>
+<body>
+    <h1 style="align-items: center; text-align: center;">NIT KKR</h1>
+    <!-- <footer><H2>Faculty Feedback Form</H2></footer> -->
+    <h2>Faculty Feedback Form</h2>
+    <!-- <br> -->
+    <div class="huh">
+        <form action="">
+            <label for="name">Student Name:</label>
+            <input type="text" placeholder="Enter Full Name" id="name" name="name">
+            <label for="roll">Roll No.:</label>
+            <input type="text" placeholder="Enter Your Roll No." id="roll" name="roll">
+            <label for="email">Student Email:</label>
+            <input type="text" placeholder="Enter your email.." id="email" name="email" required>
+
+            <label for="faculty">Select Faculty:</label>
+            <select name="faculty" id="faculty" aria-placeholder="select">
+                <option value="CSE">Dr. Sk jain</option>
+                <option value="CSE">Dr.Shweta Sharma</option>
+                <option value="CSE">Dr. Mayank Dave</option>
+            </select>
+
+            <label>Rating:</label>
+            <div class="radio">
+                <input type="radio" name="rating" id="Very Poor" value="1">
+                <label for="Very Poor">1(Very Poor)</label>
+                <input type="radio" name="rating" id="Poor" value="2">
+                <label for="Poor">2(Poor)</label>
+                <input type="radio" name="rating" id="Average" value="3">
+                <label for="Average">3(Average)</label>
+                <input type="radio" name="rating" id="Good" value="4">
+                <label for="Good">4(Good)</label>
+                <input type="radio" name="rating" id="Excellent" value="5">
+                <label for="Excellent">5(Excellent)</label>
+            </div>
+
+            <label for="hu">Positive Aspects:</label>
+            <textarea name="hu" id="hu" placeholder="Enter faculties positive aspects here ..." rows="3"></textarea>
+            <label for="ok">Areas for Improvement:</label>
+            <textarea name="ok" id="ok" placeholder="Enter suggestions for improvement here ..." rows="3"></textarea>
+            <br><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
